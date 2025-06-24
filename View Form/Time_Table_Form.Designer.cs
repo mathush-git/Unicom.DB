@@ -30,6 +30,8 @@
         {
             dvg_View_Time_Table_Form = new DataGridView();
             label1 = new Label();
+            btnBack_Page = new Button();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)dvg_View_Time_Table_Form).BeginInit();
             SuspendLayout();
             // 
@@ -40,6 +42,7 @@
             dvg_View_Time_Table_Form.Name = "dvg_View_Time_Table_Form";
             dvg_View_Time_Table_Form.Size = new Size(714, 283);
             dvg_View_Time_Table_Form.TabIndex = 0;
+            dvg_View_Time_Table_Form.SelectionChanged += dvg_View_Time_Table_Form_SelectionChanged;
             // 
             // label1
             // 
@@ -51,11 +54,33 @@
             label1.TabIndex = 1;
             label1.Text = "View Time_Table Form";
             // 
+            // btnBack_Page
+            // 
+            btnBack_Page.Location = new Point(229, 402);
+            btnBack_Page.Name = "btnBack_Page";
+            btnBack_Page.Size = new Size(75, 23);
+            btnBack_Page.TabIndex = 2;
+            btnBack_Page.Text = "Back_Page";
+            btnBack_Page.UseVisualStyleBackColor = true;
+            btnBack_Page.Click += btnBack_Page_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(532, 402);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 3;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // Time_Table_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCancel);
+            Controls.Add(btnBack_Page);
             Controls.Add(label1);
             Controls.Add(dvg_View_Time_Table_Form);
             Name = "Time_Table_Form";
@@ -69,5 +94,7 @@
 
         private DataGridView dvg_View_Time_Table_Form;
         private Label label1;
+        private Button btnBack_Page;
+        private Button btnCancel;
     }
 }

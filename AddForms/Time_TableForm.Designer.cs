@@ -38,13 +38,13 @@
             btnBack_Page = new Button();
             btnCancel = new Button();
             dgvTime_Table = new DataGridView();
-            txtTimeSlot = new TextBox();
             txtRoomName = new TextBox();
             cmbSubject_Id = new ComboBox();
             label5 = new Label();
             txtSubject = new TextBox();
             label6 = new Label();
             cmbRoomId = new ComboBox();
+            cmbTime_Slot = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvTime_Table).BeginInit();
             SuspendLayout();
             // 
@@ -145,13 +145,6 @@
             dgvTime_Table.CellContentClick += dgvTime_Table_CellContentClick;
             dgvTime_Table.SelectionChanged += dgvTime_Table_SelectionChanged;
             // 
-            // txtTimeSlot
-            // 
-            txtTimeSlot.Location = new Point(447, 74);
-            txtTimeSlot.Name = "txtTimeSlot";
-            txtTimeSlot.Size = new Size(183, 23);
-            txtTimeSlot.TabIndex = 13;
-            // 
             // txtRoomName
             // 
             txtRoomName.Location = new Point(135, 200);
@@ -200,18 +193,26 @@
             cmbRoomId.Size = new Size(184, 23);
             cmbRoomId.TabIndex = 19;
             // 
+            // cmbTime_Slot
+            // 
+            cmbTime_Slot.FormattingEnabled = true;
+            cmbTime_Slot.Location = new Point(462, 74);
+            cmbTime_Slot.Name = "cmbTime_Slot";
+            cmbTime_Slot.Size = new Size(170, 23);
+            cmbTime_Slot.TabIndex = 20;
+            // 
             // Time_Table
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmbTime_Slot);
             Controls.Add(cmbRoomId);
             Controls.Add(label6);
             Controls.Add(txtSubject);
             Controls.Add(label5);
             Controls.Add(cmbSubject_Id);
             Controls.Add(txtRoomName);
-            Controls.Add(txtTimeSlot);
             Controls.Add(dgvTime_Table);
             Controls.Add(btnCancel);
             Controls.Add(btnBack_Page);
@@ -249,5 +250,6 @@
         private TextBox txtSubject;
         private Label label6;
         private ComboBox cmbRoomId;
+        private ComboBox cmbTime_Slot;
     }
 }

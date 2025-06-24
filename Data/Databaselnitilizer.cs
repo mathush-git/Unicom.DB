@@ -99,7 +99,7 @@ namespace Unicom.DB.Data
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         Exam TEXT NOT NULL,
                         Marks INTEGER NOT NULL,
-                        Subject_Name INTEGER NOT NULL,
+                        Subject_Name TEXT NOT NULL,
                         Subject_Id INTEGER,
                         Student_Id INTEGER,
                         FOREIGN KEY (Student_Id) REFERENCES Student(Id),

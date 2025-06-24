@@ -12,12 +12,15 @@ using System.Xml.Linq;
 using Unicom.DB.Controller;
 using Unicom.DB.Dashboard_Form;
 using Unicom.DB.Models;
+using Unicom.DB.Service;
 
 namespace Unicom.DB.AddForms
 {
     public partial class Time_Table : Form
     {
+        private int currentSelectedTimeTabId = 0;
         private readonly Time_TableController _time_tableController;
+        private readonly RoomController _roomController = new RoomController();
         private readonly CourseController _courseController;
         private int selectedCourseId = -1;
 
@@ -33,9 +36,29 @@ namespace Unicom.DB.AddForms
 
             LoadTime_Table();
             LoadCourse();
+            LoadTimeSlots();
+            LoadRooms();
+            cmbRoomId.SelectedIndexChanged += cmbRoomId_SelectedIndexChanged;
 
             cmbSubject_Id.SelectedIndexChanged += cmbSubject_Id_SelectedIndexChanged;
         }
+
+        private void LoadTimeSlots()
+        {
+            cmbTime_Slot.Items.Clear(); // Clear existing items if any
+
+            // Add time slots manually
+            cmbTime_Slot.Items.Add("9:00 AM To 5.00 PM");
+            cmbTime_Slot.Items.Add("9:00 AM To 10.30 AM");
+            cmbTime_Slot.Items.Add("10:30 AM To 12.00 PM");
+            cmbTime_Slot.Items.Add("1.00 PM To 2.30 PM");
+            cmbTime_Slot.Items.Add("2.30 PM To 5.00 PM");
+            cmbTime_Slot.Items.Add("9:00 AM To 12.00 PM");
+            cmbTime_Slot.Items.Add("9:00 AM To 2.00 PM");
+
+            cmbTime_Slot.SelectedIndex = -1; // No selection by default
+        }
+
         private void LoadTime_Table()
         {
             dgvTime_Table.DataSource = null;
@@ -59,14 +82,33 @@ namespace Unicom.DB.AddForms
 
         private void LoadCourse()
         {
-            var subjects = new SubjectController().GetAllSubject();  
+            var subjects = new SubjectController().GetAllSubject();
             cmbSubject_Id.DataSource = subjects;
-            cmbSubject_Id.DisplayMember = "Subject_Id";            
-            cmbSubject_Id.ValueMember = "Subject_Id";                
+            cmbSubject_Id.DisplayMember = "Subject_Id";
+            cmbSubject_Id.ValueMember = "Subject_Id";
 
             if (cmbSubject_Id.SelectedItem is Subject selectedSubject)
             {
                 txtSubject.Text = selectedSubject.Subject_Name;
+            }
+        }
+
+        private void LoadRooms()
+        {
+            var rooms = _roomController.GetAllRooms(); 
+            cmbRoomId.DataSource = null;
+            cmbRoomId.DataSource = rooms;
+            cmbRoomId.DisplayMember = "Id"; 
+            cmbRoomId.ValueMember = "Id";
+            cmbRoomId.SelectedIndex = -1;
+        }
+
+
+        private void cmbRoomId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRoomId.SelectedItem is Room selectedRoom)
+            {
+                txtRoomName.Text = selectedRoom.Name;
             }
         }
 
@@ -92,20 +134,27 @@ namespace Unicom.DB.AddForms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtRoomName.Text) || string.IsNullOrWhiteSpace(txtTimeSlot.Text))
+            if (cmbRoomId.SelectedValue == null ||
+                cmbTime_Slot.SelectedValue == null ||
+                cmbSubject_Id.SelectedValue == null ||
+                string.IsNullOrWhiteSpace(txtRoomName.Text) ||
+                string.IsNullOrWhiteSpace(txtSubject.Text))
             {
-                MessageBox.Show("Please enter both RoomId and TimeSlot.");
-                return;
+               /* MessageBox.Show("Please fill in all fields and make selections.");
+                return;*/
             }
 
             var timt_table = new TimeTable
             {
-                Room_Id = int.Parse(cmbRoomId.Text),
+                TimeTab_Id = currentSelectedTimeTabId,
+                Room_Id = Convert.ToInt32(cmbRoomId.SelectedValue),
                 Room_Name = txtRoomName.Text,
-                TimeSlot = int.Parse(txtTimeSlot.Text),
+                TimeSlot = Convert.ToInt32(cmbTime_Slot.SelectedValue),
                 Subject = txtSubject.Text,
-                Subject_Id = (int)cmbSubject_Id.SelectedValue
+                Subject_Id = Convert.ToInt32(cmbSubject_Id.SelectedValue)
             };
+
+
             _time_tableController.UpdateTimeTable(timt_table);
             LoadTime_Table();
             ClearForm();
@@ -114,7 +163,7 @@ namespace Unicom.DB.AddForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtRoomName.Text) || string.IsNullOrWhiteSpace(txtTimeSlot.Text))
+            if (string.IsNullOrWhiteSpace(txtRoomName.Text) || string.IsNullOrWhiteSpace(cmbTime_Slot.Text))
             {
                 MessageBox.Show("Please enter both RoomId and TimeSlot.");
                 return;
@@ -122,11 +171,11 @@ namespace Unicom.DB.AddForms
 
             var timt_table = new TimeTable
             {
-                Room_Id = int.Parse(txtRoomName.Text),
+                Room_Id = Convert.ToInt32(cmbRoomId.SelectedValue),
                 Room_Name = txtRoomName.Text,
-                TimeSlot = int.Parse(txtTimeSlot.Text),
+                TimeSlot = Convert.ToInt32(cmbTime_Slot.SelectedValue),
                 Subject = txtSubject.Text,
-                Subject_Id = (int)cmbSubject_Id.SelectedValue
+                Subject_Id = Convert.ToInt32(cmbSubject_Id.SelectedValue)
             };
 
             _time_tableController.AddTimeTable(timt_table);
@@ -138,19 +187,19 @@ namespace Unicom.DB.AddForms
         private void ClearInputs()
         {
             txtRoomName.Text = "";
-            txtTimeSlot.Text = "";
+            cmbTime_Slot.Text = "";
         }
 
         private void dgvTime_Table_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvTime_Table.SelectedRows.Count > 0)
             {
-                int id = Convert.ToInt32(dgvTime_Table.SelectedRows[0].Cells["Id"].Value);
+                int id = Convert.ToInt32(dgvTime_Table.SelectedRows[0].Cells["TimeTab_Id"].Value);
 
                 var result = MessageBox.Show("Are you sure you want to delete this timetable?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
@@ -173,20 +222,19 @@ namespace Unicom.DB.AddForms
 
         private void dgvTime_Table_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvTime_Table.SelectedRows.Count > 0)
+            if (dgvTime_Table.CurrentRow != null)
             {
-                var row = dgvTime_Table.SelectedRows[0];
-                var TimeTableView = row.DataBoundItem as TimeTable;
-
+                var TimeTableView = dgvTime_Table.CurrentRow.DataBoundItem as TimeTable;
                 if (TimeTableView != null)
                 {
+                    currentSelectedTimeTabId = TimeTableView.TimeTab_Id;
                     selectedCourseId = TimeTableView.Subject_Id;
 
-
-                    txtTimeSlot.Text = TimeTableView.TimeSlot.ToString();
+                    cmbTime_Slot.Text = TimeTableView.TimeSlot.ToString();
                     txtRoomName.Text = TimeTableView.Room_Id.ToString();
-                    txtSubject.Text = TimeTableView.Subject.ToString();
+                    txtSubject.Text = TimeTableView.Subject;
                     cmbSubject_Id.SelectedValue = TimeTableView.Subject_Id;
+                    cmbRoomId.SelectedValue = TimeTableView.Room_Id;
                 }
             }
             else
@@ -194,6 +242,7 @@ namespace Unicom.DB.AddForms
                 ClearInputs();
                 selectedCourseId = -1;
             }
+
         }
     }
 }

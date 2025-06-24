@@ -11,9 +11,10 @@ namespace Unicom.DB.Models
         public int Id { get; set; }
         public string Exam { get; set; }
         public string Subject_Name { get; set; }
-        public int Marks { get; set; }
-        public int Student_Id { get; set; }
-        public int Subject_Id { get; set; }
+        public int? Marks { get; set; }
+        public int? Student_Id { get; set; }
+        public int? Subject_Id { get; set; }
+
 
     }
 }

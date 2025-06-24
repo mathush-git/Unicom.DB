@@ -15,7 +15,7 @@ namespace Unicom.DB.Service
             using (var conn = DbCon.GetConnection())
             {
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO Student (Name, Address, Password, Role, CourseId, Course) VALUES (@name, @address, @role, @password, @courseId, @course)";
+                cmd.CommandText = "INSERT INTO Student (Name, Address, Password, Role, CourseId, Course) VALUES (@name, @address,@password, @role, @courseId, @course)";
                 cmd.Parameters.AddWithValue("@name", student.Name);
                 cmd.Parameters.AddWithValue("@address", student.Address);
                 cmd.Parameters.AddWithValue("@password", student.Password);

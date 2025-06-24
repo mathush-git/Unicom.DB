@@ -21,7 +21,7 @@ namespace Unicom.DB.Controller
 
         public List<Exam_mark> GetAllExam_mark() => _exam_markService.GetAll();
 
-        public void AddExam_mark(Exam_mark exam_mark) => _exam_markService.Add(exam_mark);
+        public void AddExam_mark(Exam_mark exam_mark) => _exam_markService.AddExam_mark(exam_mark);
 
         public void UpdateExam_mark(Exam_mark exam_mark) => _exam_markService.Update(exam_mark);
 

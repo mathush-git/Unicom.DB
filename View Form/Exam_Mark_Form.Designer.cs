@@ -33,16 +33,19 @@
             btnSubmit = new Button();
             label2 = new Label();
             txtStudentId = new TextBox();
+            btnBack_Page = new Button();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvView_Exam_Mark).BeginInit();
             SuspendLayout();
             // 
             // dgvView_Exam_Mark
             // 
             dgvView_Exam_Mark.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvView_Exam_Mark.Location = new Point(27, 224);
+            dgvView_Exam_Mark.Location = new Point(33, 204);
             dgvView_Exam_Mark.Name = "dgvView_Exam_Mark";
             dgvView_Exam_Mark.Size = new Size(740, 200);
             dgvView_Exam_Mark.TabIndex = 0;
+            dgvView_Exam_Mark.SelectionChanged += dgvView_Exam_Mark_SelectionChanged;
             // 
             // label1
             // 
@@ -62,6 +65,7 @@
             btnSubmit.TabIndex = 2;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // label2
             // 
@@ -71,6 +75,7 @@
             label2.Size = new Size(61, 15);
             label2.TabIndex = 3;
             label2.Text = "Student Id";
+            label2.Click += label2_Click;
             // 
             // txtStudentId
             // 
@@ -78,12 +83,35 @@
             txtStudentId.Name = "txtStudentId";
             txtStudentId.Size = new Size(204, 23);
             txtStudentId.TabIndex = 4;
+            txtStudentId.TextChanged += txtStudentId_TextChanged;
+            // 
+            // btnBack_Page
+            // 
+            btnBack_Page.Location = new Point(469, 415);
+            btnBack_Page.Name = "btnBack_Page";
+            btnBack_Page.Size = new Size(75, 23);
+            btnBack_Page.TabIndex = 5;
+            btnBack_Page.Text = "Back_Page";
+            btnBack_Page.UseVisualStyleBackColor = true;
+            btnBack_Page.Click += btnBack_Page_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(614, 415);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 6;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // Exam_Mark_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCancel);
+            Controls.Add(btnBack_Page);
             Controls.Add(txtStudentId);
             Controls.Add(label2);
             Controls.Add(btnSubmit);
@@ -103,5 +131,7 @@
         private Button btnSubmit;
         private Label label2;
         private TextBox txtStudentId;
+        private Button btnBack_Page;
+        private Button btnCancel;
     }
 }

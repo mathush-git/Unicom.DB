@@ -121,6 +121,7 @@
             txtUserId.Name = "txtUserId";
             txtUserId.Size = new Size(193, 23);
             txtUserId.TabIndex = 8;
+            txtUserId.TextChanged += txtUserId_TextChanged;
             // 
             // txtPassword
             // 

@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using Unicom.DB.Controller;
 using Unicom.DB.Dashboard_Form;
 using Unicom.DB.Models;
+using Unicom.DB.Service;
 
 namespace Unicom.DB.AddForms
 {
@@ -32,6 +33,7 @@ namespace Unicom.DB.AddForms
             this.BackgroundImageLayout = ImageLayout.Stretch;
             LoadExam_Mark();
             LoadSubjects();
+            LoadStudents();
 
             cmbSubjectName.SelectedIndexChanged += cmbSubjectName_SelectedIndexChanged;
 
@@ -49,7 +51,7 @@ namespace Unicom.DB.AddForms
 
         private void LoadExam_Mark()
         {
-           
+
             var examList = _examController.GetAllExam();
 
             cmbExam.DataSource = null;
@@ -58,11 +60,11 @@ namespace Unicom.DB.AddForms
             cmbExam.ValueMember = "Id";
 
             dgvExam_Mark.DataSource = null;
-            dgvExam_Mark.DataSource = _markController.GetAllExam_mark(); 
+            dgvExam_Mark.DataSource = _markController.GetAllExam_mark();
             dgvExam_Mark.ClearSelection();
         }
 
-       
+
 
         private void LoadSubjects()
         {
@@ -75,10 +77,19 @@ namespace Unicom.DB.AddForms
 
             if (cmbSubjectName.SelectedItem is Subject selectedSubject)
             {
-                cmbSubjectName.Text = selectedSubject.Subject_Name; 
+                cmbSubjectName.Text = selectedSubject.Subject_Name;
             }
         }
 
+        private void LoadStudents()
+        {
+            var studentService = new StudentService();
+            var students = studentService.GetAll();
+
+            cmbStudentId.DataSource = students;
+            cmbStudentId.DisplayMember = "Id";      
+            cmbStudentId.ValueMember = "Id";          
+        }
 
 
 
@@ -98,54 +109,105 @@ namespace Unicom.DB.AddForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (dgvExam_Mark.CurrentRow != null)
+            // Validate selections
+            var selectedSubject = cmbSubjectName.SelectedItem as Subject;
+            if (selectedSubject == null)
             {
-                MessageBox.Show("Please select a Exam to Add. ");
+                MessageBox.Show("Please select a subject.");
                 return;
             }
 
+            var selectedStudent = cmbStudentId.SelectedItem as Student;
+            if (selectedStudent == null)
+            {
+                MessageBox.Show("Please select a student.");
+                return;
+            }
+
+            if (!int.TryParse(txtMark.Text, out int marks))
+            {
+                MessageBox.Show("Please enter valid marks.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbExam.Text))
+            {
+                MessageBox.Show("Please select or enter an exam name.");
+                return;
+            }
+
+            // Create exam_mark object
             Exam_mark exam_mark = new Exam_mark
             {
-                Student_Id = int.Parse(txtStudentId.Text),
-                Subject_Id = (int)cmbSubjectName.SelectedValue,
+                Student_Id = selectedStudent.Id,
+                Subject_Id = selectedSubject.Subject_Id,
+                Subject_Name = selectedSubject.Subject_Name,
                 Exam = cmbExam.Text,
-                Marks = int.Parse(txtMark.Text)
+                Marks = marks
             };
-            _markController.AddExam_mark(exam_mark);
-            LoadExam_Mark();
-            ClearInputs();
-            MessageBox.Show("Exam_Mark Add Successfully");
+
+            // Call service to add
+            try
+            {
+                _markController.AddExam_mark(exam_mark);
+                MessageBox.Show("Exam mark added successfully!");
+
+                LoadExam_Mark();  // Reload data grid or list
+                ClearInputs();    // Clear form inputs
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding exam mark: " + ex.Message);
+            }
         }
+
         private void ClearInputs()
         {
-            txtStudentId.Text = "";
-           /* txtSubjectId.Text = "";*/
+            cmbStudentId.SelectedIndex = -1;
+            cmbSubjectName.SelectedIndex = -1;
             cmbExam.Text = "";
-            txtMark.Text = "";
-            selectedstudentId = -1;
+            txtMark.Clear();
         }
+
+
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvExam_Mark.CurrentRow == null)
+            if (dgvExam_Mark.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a Exam to Update. ");
+                MessageBox.Show("Please select a record to update.");
                 return;
             }
 
+            var selectedSubject = cmbSubjectName.SelectedItem as Subject;
+            if (selectedSubject == null)
+            {
+                MessageBox.Show("Please select a subject.");
+                return;
+            }
+
+            string subjectName = selectedSubject.Subject_Name;
+            int subjectId = selectedSubject.Subject_Id;
+
+
+            int selectedExamId = Convert.ToInt32(dgvExam_Mark.SelectedRows[0].Cells["Id"].Value);
+
             Exam_mark exam_mark = new Exam_mark
             {
-                Student_Id = int.Parse(txtStudentId.Text),
-                Subject_Id = (int)cmbSubjectName.SelectedValue,
+                Id = selectedExamId,
+                Student_Id = Convert.ToInt32(cmbStudentId.SelectedValue),
+                Subject_Id = subjectId,
+                Subject_Name = subjectName,
                 Exam = cmbExam.Text,
                 Marks = int.Parse(txtMark.Text)
             };
 
-            _markController.UpdateExam_mark(exam_mark);
+            _markController.UpdateExam_mark(exam_mark); // ✅ Calling service class
             LoadExam_Mark();
             ClearInputs();
-            MessageBox.Show("Exam_Mark Update Successfully");
+            MessageBox.Show("Exam_Mark updated successfully");
         }
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -194,11 +256,11 @@ namespace Unicom.DB.AddForms
 
                 if (exam_mark != null)
                 {
-                    selectedstudentId = exam_mark.Student_Id;  // I think you want student id here, not Subject_Id
+                    selectedstudentId = exam_mark.Student_Id ?? -1;  // I think you want student id here, not Subject_Id
 
                     txtMark.Text = exam_mark.Marks.ToString();
-                    txtStudentId.Text = exam_mark.Student_Id.ToString();
-                   /* txtSubjectId.Text = exam_mark.Subject_Id.ToString();*/
+                    cmbStudentId.Text = exam_mark.Student_Id.ToString();
+                    cmbSubjectName.Text = exam_mark.Subject_Name.ToString();
                     cmbExam.Text = exam_mark.Exam; // Use Text property unless properly data bound
                 }
             }
@@ -213,11 +275,11 @@ namespace Unicom.DB.AddForms
         {
             if (cmbExam.SelectedItem is ExamItem selectedExam)
             {
-               /* txtSubjectId.Text = selectedExam.Id.ToString();*/
+                /* txtSubjectId.Text = selectedExam.Id.ToString();*/
             }
             else
             {
-               /* txtSubjectId.Text = "";*/
+                /* txtSubjectId.Text = "";*/
             }
         }
     }

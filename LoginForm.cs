@@ -107,5 +107,10 @@ namespace Unicom.DB
         {
 
         }
+
+        private void txtUserId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

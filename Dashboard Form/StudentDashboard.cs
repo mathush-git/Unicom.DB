@@ -24,15 +24,15 @@ namespace Unicom.DB.Dashboard_Form
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
             this.Hide();
         }
 
         private void btnBack_Page_Click(object sender, EventArgs e)
         {
-            StudentDashboard studentdashboard = new StudentDashboard();
-            studentdashboard.Show();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
             this.Hide();
         }
 

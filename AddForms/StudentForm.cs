@@ -269,7 +269,7 @@ namespace Unicom.DB
 
         private void dgvStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void btnBack_Page_Click(object sender, EventArgs e)
@@ -303,6 +303,11 @@ namespace Unicom.DB
                     cmbCourse.SelectedValue = student.CourseId;
                 }
             }
+        }
+
+        private void StudentForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

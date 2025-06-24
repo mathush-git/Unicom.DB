@@ -8,7 +8,7 @@ namespace Unicom.DB.Models
 {
     internal class TimeTable
     {
-        public int Id { get; set; }
+        public int TimeTab_Id { get; set; }
         public int Subject_Id { get; set; }
         public string Subject { get; set; }
         public int TimeSlot { get; set; }

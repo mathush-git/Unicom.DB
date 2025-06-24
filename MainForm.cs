@@ -16,7 +16,7 @@ namespace Unicom.DB
         public MainForm()
         {
             InitializeComponent();
-            this.BackgroundImage = Image.FromFile("Z:\\C#\\Management System for C#\\Unicom.DB\\F.jpg");
+            this.BackgroundImage = Image.FromFile("Z:\\C#\\Management System for C#\\Unicom.DB\\D.jpg");
 
             
             this.BackgroundImageLayout = ImageLayout.Stretch;

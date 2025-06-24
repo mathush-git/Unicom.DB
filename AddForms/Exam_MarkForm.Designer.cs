@@ -40,9 +40,9 @@
             label4 = new Label();
             cmbExam = new ComboBox();
             txtMark = new TextBox();
-            txtStudentId = new TextBox();
             label5 = new Label();
             cmbSubjectName = new ComboBox();
+            cmbStudentId = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvExam_Mark).BeginInit();
             SuspendLayout();
             // 
@@ -118,7 +118,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(72, 170);
+            label2.Location = new Point(72, 167);
             label2.Name = "label2";
             label2.Size = new Size(35, 15);
             label2.TabIndex = 7;
@@ -146,7 +146,7 @@
             // cmbExam
             // 
             cmbExam.FormattingEnabled = true;
-            cmbExam.Location = new Point(153, 162);
+            cmbExam.Location = new Point(178, 164);
             cmbExam.Name = "cmbExam";
             cmbExam.Size = new Size(170, 23);
             cmbExam.TabIndex = 11;
@@ -154,17 +154,10 @@
             // 
             // txtMark
             // 
-            txtMark.Location = new Point(153, 204);
+            txtMark.Location = new Point(178, 203);
             txtMark.Name = "txtMark";
             txtMark.Size = new Size(170, 23);
             txtMark.TabIndex = 12;
-            // 
-            // txtStudentId
-            // 
-            txtStudentId.Location = new Point(153, 76);
-            txtStudentId.Name = "txtStudentId";
-            txtStudentId.Size = new Size(170, 23);
-            txtStudentId.TabIndex = 13;
             // 
             // label5
             // 
@@ -178,19 +171,27 @@
             // cmbSubjectName
             // 
             cmbSubjectName.FormattingEnabled = true;
-            cmbSubjectName.Location = new Point(153, 122);
+            cmbSubjectName.Location = new Point(178, 119);
             cmbSubjectName.Name = "cmbSubjectName";
             cmbSubjectName.Size = new Size(170, 23);
             cmbSubjectName.TabIndex = 15;
+            // 
+            // cmbStudentId
+            // 
+            cmbStudentId.FormattingEnabled = true;
+            cmbStudentId.Location = new Point(178, 76);
+            cmbStudentId.Name = "cmbStudentId";
+            cmbStudentId.Size = new Size(170, 23);
+            cmbStudentId.TabIndex = 16;
             // 
             // Exam_MarkForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmbStudentId);
             Controls.Add(cmbSubjectName);
             Controls.Add(label5);
-            Controls.Add(txtStudentId);
             Controls.Add(txtMark);
             Controls.Add(cmbExam);
             Controls.Add(label4);
@@ -225,8 +226,8 @@
         private Label label4;
         private ComboBox cmbExam;
         private TextBox txtMark;
-        private TextBox txtStudentId;
         private Label label5;
         private ComboBox cmbSubjectName;
+        private ComboBox cmbStudentId;
     }
 }

@@ -40,3 +40,4 @@ Z:\C#\Management System for C#\Unicom.DB\Unicom.DB\obj\Debug\net8.0-windows\Unic
 Z:\C#\Management System for C#\Unicom.DB\Unicom.DB\obj\Debug\net8.0-windows\Unicom.DB.AddForms.ExamForm.resources
 Z:\C#\Management System for C#\Unicom.DB\Unicom.DB\obj\Debug\net8.0-windows\Unicom.DB.AddForms.RoomForm.resources
 Z:\C#\Management System for C#\Unicom.DB\Unicom.DB\obj\Debug\net8.0-windows\Unicom.DB.View_Form.CourseForm.resources
+Z:\C#\Management System for C#\Unicom.DB\Unicom.DB\obj\Debug\net8.0-windows\Unicom.DB.sourcelink.json

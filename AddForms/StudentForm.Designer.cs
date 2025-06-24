@@ -246,6 +246,7 @@
             Controls.Add(btn_add);
             Name = "StudentForm";
             Text = "StudentForm";
+            Load += StudentForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
             ResumeLayout(false);
             PerformLayout();
