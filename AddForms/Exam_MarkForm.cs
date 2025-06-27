@@ -21,16 +21,48 @@ namespace Unicom.DB.AddForms
         private readonly Exam_MarkController _markController = new Exam_MarkController();
         private readonly SubjectController _subjectController = new SubjectController();
 
-
+        private string _userRole;
 
         private int selectedstudentId = -1;
-        public Exam_MarkForm()
+        public Exam_MarkForm(string userRole)
         {
             InitializeComponent();
+
+            _userRole = userRole;
             this.BackgroundImage = Image.FromFile("Z:\\C#\\Management System for C#\\Unicom.DB\\A.jpg");
 
 
             this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            switch (_userRole)
+            {
+                case "Admin":
+                    btnBack_pageL.Visible = false;
+                    btnBack_PageS.Visible = false;
+
+                    break;
+
+                case "Lecturer":
+                    btnBack_PageS.Visible = false;
+                    btnBack_Page.Visible = false;
+                    btnBack_pageL.Visible = true;
+                    break;
+
+                case "Staff":
+                    btnBack_pageL.Visible = false;
+                    btnBack_Page.Visible = false;
+                    btnBack_PageS.Visible = true;
+                    break;
+
+                default:
+
+                    btnBack_pageL.Visible = true;
+                    btnBack_PageS.Visible = true;
+                    btnBack_Page.Visible = true;
+                    break;
+            }
+
+
             LoadExam_Mark();
             LoadSubjects();
             LoadStudents();
@@ -87,8 +119,8 @@ namespace Unicom.DB.AddForms
             var students = studentService.GetAll();
 
             cmbStudentId.DataSource = students;
-            cmbStudentId.DisplayMember = "Id";      
-            cmbStudentId.ValueMember = "Id";          
+            cmbStudentId.DisplayMember = "Id";
+            cmbStudentId.ValueMember = "Id";
         }
 
 
@@ -281,6 +313,20 @@ namespace Unicom.DB.AddForms
             {
                 /* txtSubjectId.Text = "";*/
             }
+        }
+
+        private void btnBack_pageL_Click(object sender, EventArgs e)
+        {
+            LecturerDashboard lecturerDashboard = new LecturerDashboard();
+            lecturerDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnBack_PageS_Click(object sender, EventArgs e)
+        {
+            StaffDashboard staffDashboard = new StaffDashboard();
+            staffDashboard.Show();
+            this.Hide();
         }
     }
 }

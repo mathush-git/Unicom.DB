@@ -41,9 +41,9 @@
             // dgvView_Exam_Mark
             // 
             dgvView_Exam_Mark.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvView_Exam_Mark.Location = new Point(33, 204);
+            dgvView_Exam_Mark.Location = new Point(53, 204);
             dgvView_Exam_Mark.Name = "dgvView_Exam_Mark";
-            dgvView_Exam_Mark.Size = new Size(740, 200);
+            dgvView_Exam_Mark.Size = new Size(651, 200);
             dgvView_Exam_Mark.TabIndex = 0;
             dgvView_Exam_Mark.SelectionChanged += dgvView_Exam_Mark_SelectionChanged;
             // 

@@ -49,7 +49,7 @@ namespace Unicom.DB.Service
                             Room_Name = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
                             Subject = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
                             Subject_Id = Convert.ToInt32(reader.GetValue(4)),
-                            TimeSlot = Convert.ToInt32(reader.GetValue(5))
+                            TimeSlot = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),
                         });
 
                     }
@@ -64,7 +64,7 @@ namespace Unicom.DB.Service
             {
                 using (var conn = DbCon.GetConnection())
                 {
-                    conn.Open();
+                    //conn.Open();
 
                     using (var cmd = conn.CreateCommand())
                     {

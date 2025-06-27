@@ -11,7 +11,7 @@ namespace Unicom.DB.Models
         public int TimeTab_Id { get; set; }
         public int Subject_Id { get; set; }
         public string Subject { get; set; }
-        public int TimeSlot { get; set; }
+        public string TimeSlot { get; set; }
         public int Room_Id { get; set; }
         public string Room_Name { get; set; }
 

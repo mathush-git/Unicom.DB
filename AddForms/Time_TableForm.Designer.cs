@@ -45,6 +45,8 @@
             label6 = new Label();
             cmbRoomId = new ComboBox();
             cmbTime_Slot = new ComboBox();
+            btnBack_PageL = new Button();
+            btnBack_PageS = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvTime_Table).BeginInit();
             SuspendLayout();
             // 
@@ -117,9 +119,9 @@
             // 
             // btnBack_Page
             // 
-            btnBack_Page.Location = new Point(625, 277);
+            btnBack_Page.Location = new Point(625, 252);
             btnBack_Page.Name = "btnBack_Page";
-            btnBack_Page.Size = new Size(75, 23);
+            btnBack_Page.Size = new Size(97, 23);
             btnBack_Page.TabIndex = 7;
             btnBack_Page.Text = "Back_Page";
             btnBack_Page.UseVisualStyleBackColor = true;
@@ -127,9 +129,9 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(625, 359);
+            btnCancel.Location = new Point(625, 415);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(97, 23);
             btnCancel.TabIndex = 8;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -201,11 +203,33 @@
             cmbTime_Slot.Size = new Size(170, 23);
             cmbTime_Slot.TabIndex = 20;
             // 
+            // btnBack_PageL
+            // 
+            btnBack_PageL.Location = new Point(625, 306);
+            btnBack_PageL.Name = "btnBack_PageL";
+            btnBack_PageL.Size = new Size(97, 23);
+            btnBack_PageL.TabIndex = 21;
+            btnBack_PageL.Text = "Back_page(L)";
+            btnBack_PageL.UseVisualStyleBackColor = true;
+            btnBack_PageL.Click += btnBack_PageL_Click;
+            // 
+            // btnBack_PageS
+            // 
+            btnBack_PageS.Location = new Point(625, 363);
+            btnBack_PageS.Name = "btnBack_PageS";
+            btnBack_PageS.Size = new Size(97, 23);
+            btnBack_PageS.TabIndex = 22;
+            btnBack_PageS.Text = "Back_Page(S)";
+            btnBack_PageS.UseVisualStyleBackColor = true;
+            btnBack_PageS.Click += btnBack_PageS_Click;
+            // 
             // Time_Table
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnBack_PageS);
+            Controls.Add(btnBack_PageL);
             Controls.Add(cmbTime_Slot);
             Controls.Add(cmbRoomId);
             Controls.Add(label6);
@@ -251,5 +275,7 @@
         private Label label6;
         private ComboBox cmbRoomId;
         private ComboBox cmbTime_Slot;
+        private Button btnBack_PageL;
+        private Button btnBack_PageS;
     }
 }

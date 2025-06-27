@@ -37,6 +37,8 @@
             label2 = new Label();
             btnBack_Page = new Button();
             btnCancel = new Button();
+            btnBack_pageL = new Button();
+            btnBack_PageS = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).BeginInit();
             SuspendLayout();
             // 
@@ -110,7 +112,7 @@
             // 
             btnBack_Page.Location = new Point(80, 388);
             btnBack_Page.Name = "btnBack_Page";
-            btnBack_Page.Size = new Size(75, 23);
+            btnBack_Page.Size = new Size(93, 23);
             btnBack_Page.TabIndex = 9;
             btnBack_Page.Text = "Back_Page";
             btnBack_Page.UseVisualStyleBackColor = true;
@@ -118,19 +120,41 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(667, 388);
+            btnCancel.Location = new Point(653, 388);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(89, 23);
             btnCancel.TabIndex = 10;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
+            // 
+            // btnBack_pageL
+            // 
+            btnBack_pageL.Location = new Point(264, 388);
+            btnBack_pageL.Name = "btnBack_pageL";
+            btnBack_pageL.Size = new Size(93, 23);
+            btnBack_pageL.TabIndex = 11;
+            btnBack_pageL.Text = "Back_page(L)";
+            btnBack_pageL.UseVisualStyleBackColor = true;
+            btnBack_pageL.Click += btnBack_pageL_Click;
+            // 
+            // btnBack_PageS
+            // 
+            btnBack_PageS.Location = new Point(469, 388);
+            btnBack_PageS.Name = "btnBack_PageS";
+            btnBack_PageS.Size = new Size(87, 23);
+            btnBack_PageS.TabIndex = 12;
+            btnBack_PageS.Text = "Back_Page(S)";
+            btnBack_PageS.UseVisualStyleBackColor = true;
+            btnBack_PageS.Click += btnBack_PageS_Click;
             // 
             // Course_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnBack_PageS);
+            Controls.Add(btnBack_pageL);
             Controls.Add(btnCancel);
             Controls.Add(btnBack_Page);
             Controls.Add(label2);
@@ -159,5 +183,7 @@
         private Label label2;
         private Button btnBack_Page;
         private Button btnCancel;
+        private Button btnBack_pageL;
+        private Button btnBack_PageS;
     }
 }

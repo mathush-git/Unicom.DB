@@ -24,36 +24,36 @@ namespace Unicom.DB.Dashboard_Form
 
         private void btnTime_Table_Click(object sender, EventArgs e)
         {
-            Time_Table time_tableForm = new Time_Table();
+            Time_Table time_tableForm = new Time_Table("Staff");
             time_tableForm.Show();
             this.Hide();
         }
 
         private void btnExam_Marks_Click(object sender, EventArgs e)
         {
-            Exam_MarkForm exam_markForm = new Exam_MarkForm();
+            Exam_MarkForm exam_markForm = new Exam_MarkForm("Staff");
             exam_markForm.Show();
             this.Hide();
         }
 
         private void btnCourse_Click(object sender, EventArgs e)
         {
-            Course_Form courseForm = new Course_Form();
+            Course_Form courseForm = new Course_Form("Staff");
             courseForm.Show();
             this.Hide();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
             this.Hide();
         }
 
         private void btnBack_Page_Click(object sender, EventArgs e)
         {
-            StaffDashboard staffdashboard = new StaffDashboard();
-            staffdashboard.Show();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
             this.Hide();
         }
 

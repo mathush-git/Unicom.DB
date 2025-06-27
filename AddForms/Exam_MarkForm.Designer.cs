@@ -43,6 +43,8 @@
             label5 = new Label();
             cmbSubjectName = new ComboBox();
             cmbStudentId = new ComboBox();
+            btnBack_pageL = new Button();
+            btnBack_PageS = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvExam_Mark).BeginInit();
             SuspendLayout();
             // 
@@ -78,9 +80,9 @@
             // 
             // btnBack_Page
             // 
-            btnBack_Page.Location = new Point(634, 284);
+            btnBack_Page.Location = new Point(598, 263);
             btnBack_Page.Name = "btnBack_Page";
-            btnBack_Page.Size = new Size(75, 23);
+            btnBack_Page.Size = new Size(89, 23);
             btnBack_Page.TabIndex = 3;
             btnBack_Page.Text = "Back_Page";
             btnBack_Page.UseVisualStyleBackColor = true;
@@ -88,9 +90,9 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(634, 346);
+            btnCancel.Location = new Point(598, 386);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(89, 23);
             btnCancel.TabIndex = 4;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -184,11 +186,33 @@
             cmbStudentId.Size = new Size(170, 23);
             cmbStudentId.TabIndex = 16;
             // 
+            // btnBack_pageL
+            // 
+            btnBack_pageL.Location = new Point(598, 303);
+            btnBack_pageL.Name = "btnBack_pageL";
+            btnBack_pageL.Size = new Size(89, 23);
+            btnBack_pageL.TabIndex = 17;
+            btnBack_pageL.Text = "Back_page(L)";
+            btnBack_pageL.UseVisualStyleBackColor = true;
+            btnBack_pageL.Click += btnBack_pageL_Click;
+            // 
+            // btnBack_PageS
+            // 
+            btnBack_PageS.Location = new Point(598, 347);
+            btnBack_PageS.Name = "btnBack_PageS";
+            btnBack_PageS.Size = new Size(89, 23);
+            btnBack_PageS.TabIndex = 18;
+            btnBack_PageS.Text = "Back_Page(S)";
+            btnBack_PageS.UseVisualStyleBackColor = true;
+            btnBack_PageS.Click += btnBack_PageS_Click;
+            // 
             // Exam_MarkForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnBack_PageS);
+            Controls.Add(btnBack_pageL);
             Controls.Add(cmbStudentId);
             Controls.Add(cmbSubjectName);
             Controls.Add(label5);
@@ -229,5 +253,7 @@
         private Label label5;
         private ComboBox cmbSubjectName;
         private ComboBox cmbStudentId;
+        private Button btnBack_pageL;
+        private Button btnBack_PageS;
     }
 }

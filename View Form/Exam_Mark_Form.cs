@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unicom.DB.Dashboard_Form;
+using Unicom.DB.Service;
 
 namespace Unicom.DB.View_Form
 {
@@ -24,8 +25,40 @@ namespace Unicom.DB.View_Form
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (!int.TryParse(txtStudentId.Text.Trim(), out int studentId))
+            {
+                MessageBox.Show("Please enter a valid Student ID.");
+                return;
+            }
 
+            try
+            {
+                var examMarkService = new Exam_MarkService();
+                var examMarks = examMarkService.GetByStudentId(studentId);
+
+                if (examMarks.Any())
+                {
+                    dgvView_Exam_Mark.DataSource = null;
+                    dgvView_Exam_Mark.DataSource = examMarks;
+                    dgvView_Exam_Mark.ClearSelection();
+                }
+                else
+                {
+                    MessageBox.Show("No exam records found for the given Student ID.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvView_Exam_Mark.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading exam marks: " + ex.Message);
+            }
         }
+
+        private void Exam_Mark_Form_Load(object sender, EventArgs e)
+        {
+            dgvView_Exam_Mark.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
 
         private void dgvView_Exam_Mark_SelectionChanged(object sender, EventArgs e)
         {

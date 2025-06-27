@@ -40,7 +40,7 @@
             dgvView_Course_Form.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvView_Course_Form.Location = new Point(262, 85);
             dgvView_Course_Form.Name = "dgvView_Course_Form";
-            dgvView_Course_Form.Size = new Size(280, 243);
+            dgvView_Course_Form.Size = new Size(244, 235);
             dgvView_Course_Form.TabIndex = 0;
             dgvView_Course_Form.CellContentClick += dgvView_Course_Form_CellContentClick;
             dgvView_Course_Form.SelectionChanged += dgvView_Course_Form_SelectionChanged;

@@ -24,13 +24,48 @@ namespace Unicom.DB.AddForms
         private readonly CourseController _courseController;
         private int selectedCourseId = -1;
 
-        public Time_Table()
+        private string _userRole;
+
+        public Time_Table(string userRole)
         {
             InitializeComponent();
+
+            _userRole = userRole;
             this.BackgroundImage = Image.FromFile("Z:\\C#\\Management System for C#\\Unicom.DB\\A.jpg");
 
 
             this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            switch (_userRole)
+            {
+                case "Admin":
+                    btnBack_PageL.Visible = false;
+                    btnBack_PageS.Visible = false;
+
+                    break;
+
+                case "Lecturer":
+                    btnBack_PageS.Visible = false;
+                    btnBack_Page.Visible = false;
+                    btnBack_PageL.Visible = true;
+                    break;
+
+                case "Staff":
+                    btnBack_PageL.Visible = false;
+                    btnBack_Page.Visible = false;
+                    btnBack_PageS.Visible = true;
+                    break;
+
+                default:
+
+                    btnBack_PageL.Visible = true;
+                    btnBack_PageS.Visible = true;
+                    btnBack_Page.Visible = true;
+                    break;
+            }
+
+
+
             _time_tableController = new Time_TableController();
             _courseController = new CourseController();
 
@@ -95,10 +130,10 @@ namespace Unicom.DB.AddForms
 
         private void LoadRooms()
         {
-            var rooms = _roomController.GetAllRooms(); 
+            var rooms = _roomController.GetAllRooms();
             cmbRoomId.DataSource = null;
             cmbRoomId.DataSource = rooms;
-            cmbRoomId.DisplayMember = "Id"; 
+            cmbRoomId.DisplayMember = "Id";
             cmbRoomId.ValueMember = "Id";
             cmbRoomId.SelectedIndex = -1;
         }
@@ -140,8 +175,8 @@ namespace Unicom.DB.AddForms
                 string.IsNullOrWhiteSpace(txtRoomName.Text) ||
                 string.IsNullOrWhiteSpace(txtSubject.Text))
             {
-               /* MessageBox.Show("Please fill in all fields and make selections.");
-                return;*/
+                /* MessageBox.Show("Please fill in all fields and make selections.");
+                 return;*/
             }
 
             var timt_table = new TimeTable
@@ -149,7 +184,7 @@ namespace Unicom.DB.AddForms
                 TimeTab_Id = currentSelectedTimeTabId,
                 Room_Id = Convert.ToInt32(cmbRoomId.SelectedValue),
                 Room_Name = txtRoomName.Text,
-                TimeSlot = Convert.ToInt32(cmbTime_Slot.SelectedValue),
+                TimeSlot = cmbTime_Slot.Text,
                 Subject = txtSubject.Text,
                 Subject_Id = Convert.ToInt32(cmbSubject_Id.SelectedValue)
             };
@@ -173,7 +208,7 @@ namespace Unicom.DB.AddForms
             {
                 Room_Id = Convert.ToInt32(cmbRoomId.SelectedValue),
                 Room_Name = txtRoomName.Text,
-                TimeSlot = Convert.ToInt32(cmbTime_Slot.SelectedValue),
+                TimeSlot = cmbTime_Slot.Text,
                 Subject = txtSubject.Text,
                 Subject_Id = Convert.ToInt32(cmbSubject_Id.SelectedValue)
             };
@@ -243,6 +278,20 @@ namespace Unicom.DB.AddForms
                 selectedCourseId = -1;
             }
 
+        }
+
+        private void btnBack_PageL_Click(object sender, EventArgs e)
+        {
+            LecturerDashboard lecturerDashboard = new LecturerDashboard();
+            lecturerDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnBack_PageS_Click(object sender, EventArgs e)
+        {
+            StaffDashboard staffDashboard = new StaffDashboard();
+            staffDashboard.Show();
+            this.Hide();
         }
     }
 }

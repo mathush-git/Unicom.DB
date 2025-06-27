@@ -38,9 +38,9 @@
             // dvg_View_Time_Table_Form
             // 
             dvg_View_Time_Table_Form.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvg_View_Time_Table_Form.Location = new Point(43, 94);
+            dvg_View_Time_Table_Form.Location = new Point(67, 120);
             dvg_View_Time_Table_Form.Name = "dvg_View_Time_Table_Form";
-            dvg_View_Time_Table_Form.Size = new Size(714, 283);
+            dvg_View_Time_Table_Form.Size = new Size(662, 224);
             dvg_View_Time_Table_Form.TabIndex = 0;
             dvg_View_Time_Table_Form.SelectionChanged += dvg_View_Time_Table_Form_SelectionChanged;
             // 

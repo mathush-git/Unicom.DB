@@ -89,5 +89,34 @@ namespace Unicom.DB.Service
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public List<Exam_mark> GetByStudentId(int studentId)
+        {
+            var examMarks = new List<Exam_mark>();
+            using (var conn = DbCon.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Exam_marks WHERE Student_Id = @studentId";
+                cmd.Parameters.AddWithValue("@studentId", studentId);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        examMarks.Add(new Exam_mark
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Exam = reader["Exam"]?.ToString(),
+                            Marks = Convert.ToInt32(reader["Marks"]),
+                            Subject_Name = reader["Subject_Name"]?.ToString(),
+                            Student_Id = Convert.ToInt32(reader["Student_Id"]),
+                            Subject_Id = Convert.ToInt32(reader["Subject_Id"])
+                        });
+                    }
+                }
+            }
+            return examMarks;
+        }
+
     }
 }

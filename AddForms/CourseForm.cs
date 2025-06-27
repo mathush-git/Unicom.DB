@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,14 +18,51 @@ namespace Unicom.DB
     public partial class Course_Form : Form
     {
         private CourseController courseController = new CourseController();
-        public Course_Form()
+
+        private string _userRole;
+        public Course_Form(string userRole)
         {
             InitializeComponent();
+
+            _userRole = userRole;
             this.BackgroundImage = Image.FromFile("Z:\\C#\\Management System for C#\\Unicom.DB\\A.jpg");
 
 
             this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            switch (_userRole)
+            {
+                case "Admin":
+                    btnBack_pageL.Visible = false;  
+                    btnBack_PageS.Visible = false;  
+                                                    
+                    break;
+
+                case "Lecturer":
+                    btnBack_PageS.Visible = false;  
+                    btnBack_Page.Visible = false;   
+                    btnBack_pageL.Visible = true;   
+                    break;
+
+                case "Staff":
+                    btnBack_pageL.Visible = false;  
+                    btnBack_Page.Visible = false;   
+                    btnBack_PageS.Visible = true;  
+                    break;
+
+                default:
+                    
+                    btnBack_pageL.Visible = true;
+                    btnBack_PageS.Visible = true;
+                    btnBack_Page.Visible = true;
+                    break;
+            }
+
             LoadCourse();
+        }
+
+        public Course_Form() : this("Unknown") 
+        {
         }
 
         private void LoadCourse()
@@ -156,7 +194,7 @@ namespace Unicom.DB
 
         private void dgvCourse_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void btnBack_Page_Click(object sender, EventArgs e)
@@ -184,6 +222,20 @@ namespace Unicom.DB
             {
                 couseName.Text = dgvCourse.SelectedRows[0].Cells["Name"].Value.ToString();
             }
+        }
+
+        private void btnBack_pageL_Click(object sender, EventArgs e)
+        {
+            LecturerDashboard lecturerDashboard = new LecturerDashboard();
+            lecturerDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnBack_PageS_Click(object sender, EventArgs e)
+        {
+            StaffDashboard staffDashboard = new StaffDashboard();
+            staffDashboard.Show();
+            this.Hide();
         }
     }
 }
