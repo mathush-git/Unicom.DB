@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Unicom.DB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff1f7ce6442f9f492c15f6af212f9669ffe18955")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75632f35b4362f97959f1151eb2b4d8696b8af4c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Unicom.DB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Unicom.DB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
