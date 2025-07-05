@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="AddForms\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\CourseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\ExamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\Exam_MarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\LecturerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\RoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\StaffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\StudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\SubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddForms\Time_TableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard Form\AdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard Form\LecturerDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard Form\StaffDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard Form\StudentDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View Form\Course_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View Form\Exam_Mark_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View Form\Time_Table_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
